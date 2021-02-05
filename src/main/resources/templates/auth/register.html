@@ -7,7 +7,7 @@
     <header th:replace="/fragments/header"></header>
     <section class="card">
         <h2>Sign up</h2>
-        <form th:action="@{/register}" th:object="${userModel}" th:method="POST" >
+        <form th:action="@{/auth/register}" th:object="${userModel}" th:method="POST" >
             <div class="form-group w-50">
                 <label>Username</label>
                 <input type="text" name="username" class="form-control" th:field="*{username}" placeholder="Enter username">

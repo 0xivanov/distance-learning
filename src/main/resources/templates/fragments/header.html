@@ -3,8 +3,8 @@
 <header th:fragment="header" class="row">
     <h1>Distance Learning</h1>
     <div class="ml-auto">
-        <a sec:authorize="isAnonymous()" href="/login" class="btn btn-light" role="button">Log in</a>
-        <a sec:authorize="isAnonymous()" href="/register" class="btn btn-primary" role="button">Sign up</a>
+        <a sec:authorize="isAnonymous()" href="/auth/login" class="btn btn-light" role="button">Log in</a>
+        <a sec:authorize="isAnonymous()" href="/auth/register" class="btn btn-primary" role="button">Sign up</a>
         <p sec:authorize="isAuthenticated()" class="pt-3">
             <strong sec:authentication="name"></strong>
             |

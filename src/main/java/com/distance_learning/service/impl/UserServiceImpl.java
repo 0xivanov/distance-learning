@@ -46,10 +46,6 @@ public class UserServiceImpl implements UserService {
         userRepository.saveAndFlush(user);
     }
 
-    @Override
-    public void loginUser() {
-        System.out.println("login successful");
-    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

@@ -7,8 +7,10 @@
     <header th:replace="/fragments/header"></header>
     <section class = "card">
         <div sec:authorize="hasAuthority('TEACHER')">
-            <a href="/register" class="btn btn-primary" role="button">Create course</a>
-            <button th:action class="btn-primary">Create course</button>
+            <button th:action="@{/home}" class="btn btn-primary">Create course</button>
+        </div>
+        <div sec:authorize="hasAuthority('STUDENT')">
+            <button th:action="@{/home}" class="btn btn-primary">courses</button>
         </div>
     </section>
 </div>

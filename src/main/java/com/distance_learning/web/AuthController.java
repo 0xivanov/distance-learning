@@ -9,10 +9,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
 @Controller
+@RequestMapping("/auth")
 public class AuthController {
 
     private final UserService userService;
@@ -46,12 +48,6 @@ public class AuthController {
 
     @GetMapping("/login")
     public String login() { return "/auth/login"; }
-
-    @PostMapping("/login")
-    public String loginUser() {
-        userService.loginUser();
-        return "redirect:/home";
-    }
 
     @GetMapping("/unauthorized")
     public String unauthorized() { return "index"; }

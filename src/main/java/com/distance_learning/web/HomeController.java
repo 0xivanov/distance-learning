@@ -1,39 +1,51 @@
 package com.distance_learning.web;
 
-import com.distance_learning.service.services.RoleService;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Collection;
 
 @Controller
+@RequestMapping("/home")
 public class HomeController {
 
-    private final RoleService roleService;
+    @GetMapping()
+    @PreAuthorize("! hasAuthority('ADMIN')")
+    public String loginPageRedirect(Authentication authResult) {
 
-    public HomeController(RoleService roleService) {
-        this.roleService = roleService;
-    }
+        Collection<? extends GrantedAuthority> roles =  authResult.getAuthorities();
+        if(roles.stream().anyMatch(role -> role.getAuthority().equals("TEACHER"))) {
+            return "redirect:/home/teachers";
+        }
+        if(roles.stream().anyMatch(role -> role.getAuthority().equals("TEACHER"))) {
+            return "redirect:/home/students";
+        }
 
-    @GetMapping("/")
-    public String index() {
-        roleService.seedRolesInDb();
-        return "index";
-    }
-    @GetMapping("/home")
-    public String home() {
-        return "home";
+        return null;
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/home/admin")
+    @GetMapping("/admin")
     public String adminPage() {
         return "admin";
     }
 
-    @PreAuthorize("hasAuthority('TEACHER')")
-    @PostMapping
-    public String createCourse() {
-        return null;
+    @GetMapping("/students")
+    public String studentsPage() {
+        return "home";
     }
+
+    @GetMapping("/teachers")
+    public String teachersPage() {
+        return "home";
+    }
+
 }
