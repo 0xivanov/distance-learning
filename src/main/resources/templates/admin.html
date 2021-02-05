@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="/fragments/head">
+</head>
+<body>
+<div class="container main-container">
+    <header th:replace="/fragments/header"></header>
+    <div sec:authorize="hasAuthority('ADMIN')">You are admin</div>
+    <div sec:authorize="hasAuthority('USER')">You are user</div>
+    <div sec:authorize="hasAuthority('TEACHER')">You are teacher</div>
+    <div sec:authorize="hasAuthority('STUDENT')">You are student</div>
+    <div sec:authorize="isAuthenticated()">
+        Text visible only to authenticated users.
+    </div>
+    <div sec:authorize="isAuthenticated()">
+        Authenticated as <span sec:authentication="name"></span></div>
+    <a th:href="@{/logout}">Logout</a>
+    <footer>
+        <a class="github-link" href="https://github.com/ivan-02">GitHub</a>
+    </footer>
+</div>
+</body>
+</html>
