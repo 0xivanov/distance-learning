@@ -1,6 +1,7 @@
 package com.distance_learning.web;
 
 import com.distance_learning.service.services.RoleService;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -14,7 +15,10 @@ public class IndexController {
     }
 
     @GetMapping("/")
-    public String index() {
+    public String indexPage(Authentication authResult) {
+        if(authResult != null) {
+            return "redirect:/logout";
+        }
         roleService.seedRolesInDb();
         return "index";
     }

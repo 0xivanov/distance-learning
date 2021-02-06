@@ -6,12 +6,7 @@
 <div class="container main-container">
     <header th:replace="/fragments/header"></header>
     <section class = "card">
-        <div sec:authorize="hasAuthority('TEACHER')">
-            <button th:action="@{/home}" class="btn btn-primary">Create course</button>
-        </div>
-        <div sec:authorize="hasAuthority('STUDENT')">
-            <button th:action="@{/home}" class="btn btn-primary">courses</button>
-        </div>
+        <div>I am teacher</div>
     </section>
 </div>
 </body>

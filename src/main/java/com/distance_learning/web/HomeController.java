@@ -6,11 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Collection;
 
 @Controller
@@ -23,29 +19,30 @@ public class HomeController {
 
         Collection<? extends GrantedAuthority> roles =  authResult.getAuthorities();
         if(roles.stream().anyMatch(role -> role.getAuthority().equals("TEACHER"))) {
-            return "redirect:/home/teachers";
+            return "redirect:/home/teacher";
         }
-        if(roles.stream().anyMatch(role -> role.getAuthority().equals("TEACHER"))) {
-            return "redirect:/home/students";
+        else if(roles.stream().anyMatch(role -> role.getAuthority().equals("STUDENT"))) {
+            return "redirect:/home/student";
+        } else {
+            return null;
         }
-
-        return null;
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/admin")
+    //TODO
+/*    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping()
     public String adminPage() {
-        return "admin";
+        return "/home/admin";
+    }*/
+
+    @GetMapping("/student")
+    public String studentPage() {
+        return "/home/student";
     }
 
-    @GetMapping("/students")
-    public String studentsPage() {
-        return "home";
-    }
-
-    @GetMapping("/teachers")
-    public String teachersPage() {
-        return "home";
+    @GetMapping("/teacher")
+    public String teacherPage() {
+        return "/home/teacher";
     }
 
 }
