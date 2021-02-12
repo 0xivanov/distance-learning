@@ -2,6 +2,10 @@ body {
     background-color: #c2d4d8;
 }
 
+h1 {
+    font-family: 'Clicker Script', cursive;
+}
+
 .main-container {
     width: 60%;
     margin-top: 50px;
@@ -13,4 +17,13 @@ body {
 
 .card {
     padding: 10px;
+}
+
+.course-card {
+    margin: 10px;
+}
+
+.create-course-button {
+    margin: 15px;
+    width: 8rem;
 }

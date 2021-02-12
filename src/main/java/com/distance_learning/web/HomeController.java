@@ -35,14 +35,6 @@ public class HomeController {
         return "/home/admin";
     }*/
 
-    @GetMapping("/student")
-    public String studentPage() {
-        return "/home/student";
-    }
 
-    @GetMapping("/teacher")
-    public String teacherPage() {
-        return "/home/teacher";
-    }
 
 }

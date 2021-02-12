@@ -1,12 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="/fragments/head">
 </head>
 <body>
 <div class="container main-container">
     <header th:replace="/fragments/header"></header>
-    <section class = "card">
-        <div>I am teacher</div>
+    <section class="card">
+        <nav th:replace="/fragments/nav"></nav>
+        <a href="/home/teacher/course/create" class="btn btn-primary create-course-button" role="button">Create Course</a>
+        <div class="row justify-content-center">
+            <div th:each="course: ${courses}" class="card course-card" style="width: 15rem;">
+                <img class="card-img-top" th:src="@{/images/img_read.jpg}" alt="Card image">
+                <div class="card-body">
+                    <p class="card-text">some course info/some course task</p>
+                </div>
+                <a th:text="*{course.name}" th:href="@{'/home/teacher/course/' + ${course.name}}" class="btn btn-outline-primary"></a>
+            </div>
+        </div>
     </section>
 </div>
 </body>

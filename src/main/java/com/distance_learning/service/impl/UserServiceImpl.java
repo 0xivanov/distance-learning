@@ -13,7 +13,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -44,6 +47,13 @@ public class UserServiceImpl implements UserService {
 
 
         userRepository.saveAndFlush(user);
+    }
+
+    @Override
+    public List<String> getAllStudentsName() {
+        Role studentRole = roleRepository.findByAuthority("STUDENT");
+        List<User> students = userRepository.findByAuthorities(studentRole);
+        return students.stream().map(student -> student.getUsername()).collect(Collectors.toList());
     }
 
 

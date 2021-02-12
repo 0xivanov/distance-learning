@@ -5,8 +5,17 @@
 <body>
 <div class="container main-container">
     <header th:replace="/fragments/header"></header>
-    <section class = "card">
-        <div>I am student</div>
+    <section class="card">
+        <nav th:replace="/fragments/nav"></nav>
+        <div class="row justify-content-center">
+            <div th:each="course: ${courses}" class="card course-card" style="width: 15rem;">
+                <img class="card-img-top" th:src="@{/images/img_read.jpg}" alt="Card image">
+                <div class="card-body">
+                    <p class="card-text">some course info/some course task</p>
+                </div>
+                <a th:text="*{course.name}" href="#" class="btn btn-outline-primary"></a>
+            </div>
+        </div>
     </section>
 </div>
 </body>

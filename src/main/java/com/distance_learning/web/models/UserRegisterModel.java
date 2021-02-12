@@ -1,6 +1,5 @@
 package com.distance_learning.web.models;
 
-import com.distance_learning.data.models.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

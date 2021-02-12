@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/head">
+</head>
+<body>
+<script>
+    jQuery(document).ready(function(){
+        jQuery(".chosen").chosen();
+    });
+</script>
+<div class="container main-container">
+    <header th:replace="/fragments/header"></header>
+    <section class="card">
+        <nav th:replace="/fragments/nav"></nav>
+        <form th:action="@{/home/teacher/course/create}" th:object="${courseModel}" th:method="POST">
+            <div class="form-group w-50">
+                <label>Name</label>
+                <input th:field="*{name}" type="text" name="name" class="form-control" placeholder="Enter course name">
+            </div>
+            <div class="form-group w-50">
+                <label>Select students</label>
+                <select th:field="*{users}" type="text" class="chosen form-control" data-placeholder="Choose..." multiple="true">
+                    <option th:each="name : ${students}" th:value="${name}" th:text="${name}"></option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </section>
+</div>
+</body>
+</html>

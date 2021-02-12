@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<header th:fragment="nav">
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+        <a sec:authorize="hasAuthority('STUDENT')" class="navbar-brand" href="/home/student">
+            <img th:src="@{/images/img_graduate.ico}" width="30" height="30" class="d-inline-block align-top" alt="img_graduate">
+            Courses
+        </a>
+        <a sec:authorize="hasAuthority('TEACHER')" class="navbar-brand" href="/home/teacher">
+            <img th:src="@{/images/img_graduate.ico}" width="30" height="30" class="d-inline-block align-top" alt="img_graduate">
+            Courses
+        </a>
+    </nav>
+</header>
+</html>
