@@ -1,4 +1,4 @@
-package com.distance_learning.web;
+package com.distance_learning.web.shared;
 
 import com.distance_learning.service.services.RoleService;
 import org.springframework.security.core.Authentication;

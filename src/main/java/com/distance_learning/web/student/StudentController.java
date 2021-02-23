@@ -1,4 +1,4 @@
-package com.distance_learning.web;
+package com.distance_learning.web.student;
 
 import com.distance_learning.service.services.CourseService;
 import com.distance_learning.service.services.UserService;

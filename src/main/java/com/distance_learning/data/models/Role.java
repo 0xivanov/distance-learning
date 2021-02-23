@@ -7,7 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-@Entity(name = "roles")
+@Entity(name = "role")
 @Getter
 @Setter
 @NoArgsConstructor

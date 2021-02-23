@@ -16,7 +16,7 @@ public class Course extends BaseEntity {
     private String name;
     @ManyToMany(targetEntity = User.class, fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinTable(
-            name = "courses_users",
+            name = "course_user",
             joinColumns = @JoinColumn(
                     name = "course_id",
                     referencedColumnName = "id"
@@ -30,4 +30,6 @@ public class Course extends BaseEntity {
 
     @OneToOne
     private User teacher;
+    @OneToMany(mappedBy = "course")
+    private Set<Test> tests;
 }

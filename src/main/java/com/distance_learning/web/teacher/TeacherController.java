@@ -1,14 +1,15 @@
-package com.distance_learning.web;
+package com.distance_learning.web.teacher;
 
 import com.distance_learning.service.services.CourseService;
 import com.distance_learning.service.services.UserService;
 import com.distance_learning.web.models.CourseModel;
+import com.distance_learning.web.models.TestModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.text.ParseException;
 
 @Controller
 @RequestMapping("/home/teacher")
@@ -23,9 +24,13 @@ public class TeacherController {
     }
 
     @ModelAttribute("courseModel")
-    public CourseModel userModel() {
+    public CourseModel courseModel() {
         return new CourseModel();
     }
+
+
+    @ModelAttribute("testModel")
+    public TestModel testModel() { return new TestModel(); }
 
     @GetMapping
     public String teacherPage(Model model, Principal principal) {
@@ -40,7 +45,7 @@ public class TeacherController {
     }
 
     @PostMapping("/course/create")
-    public String createCourse(Principal principal, @ModelAttribute("courseModel") CourseModel courseModel, BindingResult bindingResult) {
+    public String createCourse(Principal principal, @ModelAttribute("courseModel") CourseModel courseModel) {
         courseService.createCourse(principal.getName()
                 , courseModel.getName()
                 , courseModel.getUsers());
@@ -48,8 +53,24 @@ public class TeacherController {
     }
 
     @GetMapping("/course/{courseName}")
-    public String getCoursePage(@PathVariable String courseName) {
+    public String getCoursePage(@PathVariable String courseName, Model model) {
+        model.addAttribute("course", courseName);
         return "/home/course";
     }
 
+    @GetMapping("/course/{courseName}/test/create")
+    public String createTestPage(@PathVariable String courseName) {
+        return "/home/create-test";
+    }
+
+    @PostMapping("/course/{courseName}/test/create")
+    public String createTest(@PathVariable String courseName, @ModelAttribute("testModel") TestModel testModel) throws ParseException {
+        courseService.createTest(testModel.getName(), testModel.getMessage(), testModel.getDueDate());
+        return "/home/create-question";
+    }
+
+/*    @GetMapping("/course/{courseName}/test/questions")
+    public String createQuestionPage(@PathVariable String courseName) {
+        return "/home/create-question";
+    }*/
 }

@@ -1,4 +1,4 @@
-package com.distance_learning.web;
+package com.distance_learning.web.shared;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;

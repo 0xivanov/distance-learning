@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity(name = "users")
+@Entity(name = "user")
 @Getter
 @Setter
 public class User extends BaseEntity implements UserDetails {
@@ -23,7 +23,7 @@ public class User extends BaseEntity implements UserDetails {
     private String password;
     @ManyToMany(targetEntity = Role.class, fetch = FetchType.EAGER)
     @JoinTable(
-            name = "users_roles",
+            name = "user_role",
             joinColumns = @JoinColumn(
                     name = "user_id",
                     referencedColumnName = "id"
