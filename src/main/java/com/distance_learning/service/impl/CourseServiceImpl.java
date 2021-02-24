@@ -7,6 +7,7 @@ import com.distance_learning.data.repositories.CourseRepository;
 import com.distance_learning.data.repositories.TestRepository;
 import com.distance_learning.data.repositories.UserRepository;
 import com.distance_learning.service.models.CourseServiceModel;
+import com.distance_learning.service.models.TestServiceModel;
 import com.distance_learning.service.services.CourseService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -37,17 +38,21 @@ public class CourseServiceImpl implements CourseService {
 
 
     @Override
-    public void createCourse(String teacherName, String courseName , Set<String> studentsName) {
+    public boolean createCourse(String teacherName, CourseServiceModel courseServiceModel) {
+        if(courseRepository.getCourseByName(courseServiceModel.getName()) != null) {
+            return false;
+        }
         Course course = new Course();
-        course.setName(courseName);
+        course.setName(courseServiceModel.getName());
         courseRepository.saveAndFlush(course);
-        Set<User> students = studentsName.stream()
-                .map(name -> userRepository.findByUsername(name))
+        Set<User> students = courseServiceModel.getUsers().stream()
+                .map(user -> userRepository.findByUsername(user.getUsername()))
                 .collect(Collectors.toSet());
         course.getStudents().addAll(students);
         User teacher = userRepository.findByUsername(teacherName);
         course.setTeacher(teacher);
         courseRepository.saveAndFlush(course);
+        return true;
     }
 
     @Override
@@ -69,13 +74,8 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public void createTest(String title, String message, String dueDateString) throws ParseException {
-        Test test = new Test();
-        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm", Locale.ENGLISH);
-        Date dueDate = formatter.parse(dueDateString);
-        test.setDueDate(dueDate);
-        test.setTitle(title);
-        test.setMessage(message);
-        testRepository.saveAndFlush(test);
+    public CourseServiceModel getCurrentCourse(String courseName) {
+        Course currentCourse = courseRepository.getCourseByName(courseName);
+        return modelMapper.map(currentCourse, CourseServiceModel.class);
     }
 }

@@ -1,6 +1,5 @@
-package com.distance_learning.web.models;
+package com.distance_learning.service.models;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,8 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-public class TestModel {
+public class TestServiceModel {
     private String title;
     private String message;
     private String dueDate;

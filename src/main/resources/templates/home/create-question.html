@@ -7,6 +7,13 @@
     <header th:replace="/fragments/header"></header>
     <section class="card">
         <nav th:replace="/fragments/nav"></nav>
+        <form th:action="@{'/home/teacher/' + ${courseName} + '/test/create'}" th:object="${testModel}" th:method="POST">
+            <div class="form-group w-50">
+                <label>Title</label>
+                <input th:field="*{name}" type="text" name="name" class="form-control" placeholder="Enter test title">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </section>
 </div>
 </body>

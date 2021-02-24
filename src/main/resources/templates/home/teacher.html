@@ -14,7 +14,7 @@
                 <div class="card-body">
                     <p class="card-text">some course info/some course task</p>
                 </div>
-                <a th:text="*{course.name}" th:href="@{'/home/teacher/course/' + ${course.name}}" class="btn btn-outline-primary"></a>
+                <a th:text="*{course.name}" th:href="@{'/home/teacher/' + ${course.name}}" class="btn btn-outline-primary"></a>
             </div>
         </div>
     </section>

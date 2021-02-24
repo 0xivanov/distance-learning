@@ -7,7 +7,19 @@
     <header th:replace="/fragments/header"></header>
     <section class="card">
         <nav th:replace="/fragments/nav"></nav>
-        <a th:href="@{'/home/teacher/course/' + course + '/test/create'}" class="btn btn-primary create-course-button" role="button">Create Test</a>
+        <a th:href="@{'/home/teacher/' + ${currentCourse.name} + '/test/create'}" class="btn btn-primary create-course-button" role="button">Create Test</a>
+        <div class="row justify-content-center">
+            <div th:each="test: ${currentCourse.getTests()}" class="card mb-4" style="width:80%">
+                <div class="row no-gutters">
+                    <div class="col-md-1">
+                        <img th:src="@{/images/task.png}" alt="Task image" style="height:30px">
+                    </div>
+                    <div th:text="${#authentication.principal.username}" class="col-md-3"></div>
+                    <div th:text="*{test.title}" class="col-md-4"></div>
+                    <div th:text="*{test.dueDate}" class="col-md-2"></div>
+                </div>
+            </div>
+        </div>
     </section>
 </div>
 </body>

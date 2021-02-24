@@ -1,4 +1,4 @@
-package com.distance_learning.web.auth;
+package com.distance_learning.web.shared;
 
 import com.distance_learning.service.models.UserServiceRegisterModel;
 import com.distance_learning.service.services.UserService;

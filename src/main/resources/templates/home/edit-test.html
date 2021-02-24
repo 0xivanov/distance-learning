@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/head">
+</head>
+<body>
+<div class="container main-container">
+    <header th:replace="/fragments/header"></header>
+    <section class="card">
+        <nav th:replace="/fragments/nav"></nav>
+        <form>
+            <div class="form-group w-50">
+                <label>Title</label>
+                <input type="text" name="name" class="form-control">
+            </div>
+            <div class="form-group w-50">
+                <label>Message</label>
+                <input type="text" name="name" class="form-control">
+            </div>
+            <div class="form-group w-50">
+                <label>Due Date</label>
+                <input type="time" min="07:00" max="20:00" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-10">
+                        <strong>Questions</strong>
+                    </div>
+                    <div class="col-2">
+                        <strong>Answers</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="list-group list-group-flush">
+                <div class="list-group-item text-center">
+                    <p class="text-muted font-italic mb-0">You haven't created any questions yet. Go ahead and <a href="/teachers/quiz/10/question/add/">add the first question</a>.</p>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a href="" class="btn btn-primary btn-sm">Add question</a>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

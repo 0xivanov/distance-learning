@@ -12,4 +12,5 @@ import java.util.Set;
 public class CourseServiceModel {
     private String name;
     private Set<UserServiceRegisterModel> users;
+    private Set<TestServiceModel> tests;
 }
